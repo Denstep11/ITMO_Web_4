@@ -1,0 +1,137 @@
+<!--<table width="1000" cellspacing="4" class="main">-->
+<!--  <tr>-->
+<!--    <td  colspan="2" id="shapka"><h3 class="shapka">Баранов Денис Владимирович P32091</h3></td>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td align="center" class="coordin">-->
+<!--      <canvas id="example" width="300" height="300"></canvas>-->
+<!--    </td>-->
+<!--    <td class="shapka">-->
+<!--      <form method="GET" name="coor_form" class="forma">-->
+<!--        <h4 class="form">Введите координаты X:</h4>-->
+<!--        <input type="radio" name="coor_x" value="-5" class="coor_x">-5-->
+<!--        <input type="radio" name="coor_x" value="-4" class="coor_x">-4-->
+<!--        <input type="radio" name="coor_x" value="-3" class="coor_x">-3-->
+<!--        <input type="radio" name="coor_x" value="-2" class="coor_x">-2-->
+<!--        <input type="radio" name="coor_x" value="-1" class="coor_x">-1-->
+<!--        <input type="radio" name="coor_x" value="0" class="coor_x">0-->
+<!--        <input type="radio" name="coor_x" value="1" class="coor_x">1-->
+<!--        <input type="radio" name="coor_x" value="2" class="coor_x">2-->
+<!--        <input type="radio" name="coor_x" value="3" class="coor_x">3-->
+<!--        <p class="error" id="error_x"></p>-->
+<!--        <h4 class="form">Введите координаты Y:</h4>-->
+<!--        <input type="text" maxlength="5" name="coor_y" placeholder="[-3..3]" class="coor_y">-->
+<!--        <p class="error" id="error_y"></p>-->
+<!--        <h4 class="form">Введите R:</h4>-->
+<!--        <input type="radio" name="value_R" value="1" class="value_r">1-->
+<!--        <input type="radio" name="value_R" value="1.5" class="value_r">1.5-->
+<!--        <input type="radio" name="value_R" value="2" class="value_r">2-->
+<!--        <input type="radio" name="value_R" value="2.5" class="value_r">2.5-->
+<!--        <input type="radio" name="value_R" value="3" class="value_r">3-->
+<!--        <p class="error" id="error_r"></p>-->
+<!--        <br><br>-->
+<!--        <input type="submit" value="Отправить" name="send" id="button">-->
+<!--      </form>-->
+<!--    </td>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td colspan="2" class="shapka">-->
+<!--      <table cellspacing="3" class="result">-->
+<!--        <tr>-->
+<!--          <th>Значение X</th>-->
+<!--          <th>Значение Y</th>-->
+<!--          <th>Значение R</th>-->
+<!--          <th>Время начала</th>-->
+<!--          <th>Время выполнения</th>-->
+<!--          <th>Результат</th>-->
+<!--        </tr>-->
+<!--      </table>-->
+<!--    </td>-->
+<!--  </tr>-->
+<!--</table>-->
+
+
+  <div class="grid  col-8 mx-auto mt-6">
+    <div class="col border-round 3 bg-white text-center">
+      <h3 class="shapka">Баранов Денис Владимирович P32091</h3>
+    </div>
+  </div>
+  <div class="grid  col-8 gap-2 mx-auto">
+    <div class="col  bg-white  border-round 3 align-content-center justify-content-center" >
+        <canvas style="background-image: url('../../assets/img/cr.svg');" width="280" height="281" id="canvas" (click)="drawPoint($event)"></canvas>
+    </div>
+    <div class="col   bg-white border-round 3">
+      <form method="GET" name="coor_form" class="forma">
+                <h4 class="form">Введите координаты X: {{x}}</h4>
+                <div class="dropdown mt-2">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Координата X
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li (click)="dropdownX('-4')"><i class="dropdown-item">-4</i></li>
+                    <li (click)="dropdownX('-3')"><i class="dropdown-item">-3</i></li>
+                    <li (click)="dropdownX('-2')"><i class="dropdown-item">-2</i></li>
+                    <li (click)="dropdownX('-1')"><i class="dropdown-item">-1</i></li>
+                    <li (click)="dropdownX('0')"><i class="dropdown-item">0</i></li>
+                    <li (click)="dropdownX('1')"><i class="dropdown-item">1</i></li>
+                    <li (click)="dropdownX('2')"><i class="dropdown-item">2</i></li>
+                    <li (click)="dropdownX('3')"><i class="dropdown-item">3</i></li>
+                    <li (click)="dropdownX('4')"><i class="dropdown-item">4</i></li>
+                  </ul>
+                </div>
+                <p class="error" id="error_x"></p>
+                <h4 class="form">Введите координаты Y: {{y}}</h4>
+                <label for="customRange1" class="form-label"></label>
+                <input type="range" class="form-range" id="customRange1" min="-5" max="5" step="0.05" [(ngModel)]="y" name="y">
+                <p class="error" id="error_y"></p>
+                <h4 class="form">Введите R: {{r}}</h4>
+                <div class="dropdown mt-2">
+                  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Координата R
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li (click)="dropdownR('-4')"><i class="dropdown-item" >-4</i></li>
+                    <li (click)="dropdownR('-3')"><i class="dropdown-item" >-3</i></li>
+                    <li (click)="dropdownR('-2')"><i class="dropdown-item" >-2</i></li>
+                    <li (click)="dropdownR('-1')"><i class="dropdown-item" >-1</i></li>
+                    <li (click)="dropdownR('0')"><i class="dropdown-item" >0</i></li>
+                    <li (click)="dropdownR('1')"><i class="dropdown-item" >1</i></li>
+                    <li (click)="dropdownR('2')"><i class="dropdown-item" >2</i></li>
+                    <li (click)="dropdownR('3')"><i class="dropdown-item" >3</i></li>
+                    <li (click)="dropdownR('4')"><i class="dropdown-item" >4</i></li>
+                  </ul>
+                </div>
+                <p class="error" id="error_r"></p>
+                <br>
+                <button type="button" class="btn btn-primary" (click)="sendpost(this.x,this.y,this.r)">Отправить</button>
+                <button type="button" class="btn btn-secondary ml-3" routerLink="/log" (click)="cleanSession()">Выйти</button>
+              </form>
+    </div>
+  </div>
+  <div class="grid  col-8 mx-auto">
+    <div class="col bg-white border-round 3">
+      <table class="table">
+        <thead>
+        <tr>
+          <th scope="col" class="text-center">X</th>
+          <th scope="col" class="text-center">Y</th>
+          <th scope="col" class="text-center">R</th>
+          <th scope="col" class="text-center">Время начала</th>
+          <th scope="col" class="text-center">Время выполнения</th>
+          <th scope="col" class="text-center">Результат</th>
+        </tr>
+        <tr *ngFor="let pointTable of points">
+          <td class="text-center">{{pointTable.x}}</td>
+          <td class="text-center">{{pointTable.y}}</td>
+          <td class="text-center">{{pointTable.r}}</td>
+          <td class="text-center">{{pointTable.time}}</td>
+          <td class="text-center">{{pointTable.long_time}} нс</td>
+          <td class="text-center">{{pointTable.result}}</td>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
